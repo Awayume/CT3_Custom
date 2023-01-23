@@ -1,0 +1,29 @@
+name: CT3 Kernel build
+
+on:
+  push:
+    paths:
+      - '.github/workflows/kernel-build.yaml'
+      - 'kernel-4.4/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: awayume/a04br3-build:latest
+    defaults:
+      run:
+        working-directory: kernel-4.4
+    steps:
+      - uses: actions/checkout@v2
+      - name: Add config
+        run: |
+          scripts/kconfig/merge_config.sh arch/arm64/configs/a04br3_debug_defconfig android/configs/android-base.cfg android/configs/android-recommended.cfg
+      - name: Build CT3 kernel
+        run: |
+          make -j8
+      - name: Archive CT3 kernel
+        uses: actions/upload-artifact@v2
+        with:
+          name: TAB-A04-BR3 Kernel
+          path: kernel-4.4/arch/arm64/zImage
