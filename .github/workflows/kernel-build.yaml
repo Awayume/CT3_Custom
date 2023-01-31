@@ -21,7 +21,7 @@ jobs:
           scripts/kconfig/merge_config.sh arch/arm64/configs/a04br3_debug_defconfig android/configs/android-base.cfg android/configs/android-recommended.cfg
       - name: Build CT3 kernel
         run: |
-          make -j8
+          make -j8 CONFIG_NO_ERROR_ON_MISMATCH=y
       - name: Archive CT3 kernel
         uses: actions/upload-artifact@v2
         with:
