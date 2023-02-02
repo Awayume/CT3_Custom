@@ -37,7 +37,7 @@
 #include "extd_factory.h"
 #include "mtk_extd_mgr.h"
 #include <linux/suspend.h>
-#include "extd_platform.h"
+#include "mt8167/extd_platform.h"
 
 
 #define EXTD_DEVNAME "hdmitx"
