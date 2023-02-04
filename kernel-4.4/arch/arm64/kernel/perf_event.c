@@ -516,7 +516,6 @@ static int armv8pmu_get_event_idx(struct pmu_hw_events *cpuc,
 {
 	int idx;
 	struct arm_pmu *cpu_pmu = to_arm_pmu(event->pmu);
-	struct hw_perf_event *hwc = &event->hw;
 
 #if ARMV8_USING_IDX_CYCLE_COUNTER
 	/* Always place a cycle counter into the cycle counter. */
