@@ -85,7 +85,7 @@ static void _RGXUpdateGPUUtilStats(PVRSRV_RGXDEV_INFO *psDevInfo)
 #ifndef ENABLE_COMMON_DVFS
 	OSLockAcquire(psDevInfo->hGPUUtilLock);
 #else
-	spin_lock_irqsave(&psDevInfo->sGPUUtilLock, ui64LockFlags);
+	spin_lock_irqsave(&psDevInfo->sGPUUtilLock, (unsigned long)ui64LockFlags);
 #endif
 
 	ui64TimeNow = RGXFWIF_GPU_UTIL_GET_TIME(OSClockns64());

@@ -444,7 +444,7 @@ static PVRSRV_ERROR RGXGetGpuUtilStats(PVRSRV_DEVICE_NODE *psDeviceNode,
 #ifndef ENABLE_COMMON_DVFS
 	OSLockAcquire(psDevInfo->hGPUUtilLock);
 #else
-	spin_lock_irqsave(&psDevInfo->sGPUUtilLock, ui64LockFlags);
+	spin_lock_irqsave(&psDevInfo->sGPUUtilLock, (unsigned long)ui64LockFlags);
 #endif
 
 	/* Read the timer before reading the latest stats from the shared
